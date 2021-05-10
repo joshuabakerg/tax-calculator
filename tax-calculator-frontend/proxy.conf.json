@@ -1,0 +1,22 @@
+{
+  "/api": {
+    "target": {
+      "host": "localhost",
+      "protocol": "http:",
+      "port": 8080
+    },
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/actuator": {
+    "target": {
+      "host": "localhost",
+      "protocol": "http:",
+      "port": 8080
+    },
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}
