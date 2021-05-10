@@ -4,7 +4,7 @@ import za.co.joshuabakerg.taxcalculatorbackend.domain.model.TaxCalculationReques
 import za.co.joshuabakerg.taxcalculatorbackend.domain.model.TaxCalculationResponse;
 
 /**
- * Service responsible for tax calculations.
+ * Service responsible for determining tax related operations.
  *
  * @author Joshua Baker on 2021/05/10
  */

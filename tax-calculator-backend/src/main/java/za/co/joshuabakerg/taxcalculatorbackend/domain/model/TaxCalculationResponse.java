@@ -18,10 +18,10 @@ import lombok.NonNull;
 public class TaxCalculationResponse {
 
     @NonNull
-    private BigDecimal taxMonthly;
+    private BigDecimal monthlyPAYE;
 
     @NonNull
-    private BigDecimal taxAnnually;
+    private BigDecimal annuallyPAYE;
 
     @NonNull
     private BigDecimal taxCredits;

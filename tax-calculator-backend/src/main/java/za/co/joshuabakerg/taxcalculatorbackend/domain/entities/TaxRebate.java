@@ -12,19 +12,20 @@ import lombok.RequiredArgsConstructor;
  * @author Joshua Baker on 2021/05/10
  */
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class TaxBracket {
-
-    private BigDecimal from;
-
-    private BigDecimal to;
+@AllArgsConstructor
+public class TaxRebate {
 
     @NonNull
-    private BigDecimal initialTax;
+    private int id;
 
     @NonNull
-    private Float percentage;
+    private String name;
 
+    @NonNull
+    private Integer ageRequired;
+
+    @NonNull
+    private BigDecimal amount;
 
 }

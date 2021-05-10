@@ -2,12 +2,14 @@ package za.co.joshuabakerg.taxcalculatorbackend.domain.repositories.impl;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Optional;
 
+import lombok.AllArgsConstructor;
 import za.co.joshuabakerg.taxcalculatorbackend.config.ApplicationProperties;
 import za.co.joshuabakerg.taxcalculatorbackend.domain.entities.TaxYear;
 import za.co.joshuabakerg.taxcalculatorbackend.domain.repositories.TaxYearRepository;
@@ -17,15 +19,11 @@ import za.co.joshuabakerg.taxcalculatorbackend.domain.repositories.TaxYearReposi
  *
  * @author Joshua Baker on 2021/05/10
  */
-@Repository
+@Component("taxYearRepository")
+@AllArgsConstructor
 public class TaxYearRepositoryImpl implements TaxYearRepository {
 
     private final ApplicationProperties applicationProperties;
-
-    @Autowired
-    public TaxYearRepositoryImpl(ApplicationProperties applicationProperties) {
-        this.applicationProperties = applicationProperties;
-    }
 
     @Override
     public Optional<TaxYear> findById(Integer id) {

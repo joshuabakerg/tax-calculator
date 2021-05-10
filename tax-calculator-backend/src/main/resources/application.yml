@@ -10,36 +10,36 @@ app:
         - from: 0
           to: 204_900
           initialTax: 0
-          percentage: 18
+          percentage: 0.18
 
         - from: 205_901
           to: 321_600
           initialTax: 37_062
-          percentage: 26
+          percentage: 0.26
 
         - from: 321_601
           to: 445_100
           initialTax: 67_144
-          percentage: 31
+          percentage: 0.31
 
         - from: 445_101
           to: 584_200
           initialTax: 105_429
-          percentage: 36
+          percentage: 0.36
 
         - from: 584_201
           to: 744_800
           initialTax: 155_505
-          percentage: 39
+          percentage: 0.39
 
         - from: 744_801
           to: 1_577_300
           initialTax: 218_139
-          percentage: 41
+          percentage: 0.41
 
         - from: 1_577_301
           initialTax: 559_464
-          percentage: 45
+          percentage: 0.45
 
       taxRebates:
         - id: 0
@@ -69,6 +69,7 @@ app:
           minAge: 75
           threshold: 143_850
 
+    ##TODO update below
     #######################################
     - id: 1
       name: Tax Year 2020
@@ -78,36 +79,36 @@ app:
         - from: 0
           to: 204_900
           initialTax: 0
-          percentage: 18
+          percentage: 0.18
 
         - from: 205_901
           to: 321_600
           initialTax: 37_062
-          percentage: 26
+          percentage: 0.26
 
         - from: 321_601
           to: 445_100
           initialTax: 67_144
-          percentage: 31
+          percentage: 0.31
 
         - from: 445_101
           to: 584_200
           initialTax: 105_429
-          percentage: 36
+          percentage: 0.36
 
         - from: 584_201
           to: 744_800
           initialTax: 155_505
-          percentage: 39
+          percentage: 0.39
 
         - from: 744_801
           to: 1_577_300
           initialTax: 218_139
-          percentage: 41
+          percentage: 0.41
 
         - from: 1_577_301
           initialTax: 559_464
-          percentage: 45
+          percentage: 0.45
 
       taxRebates:
         - id: 0

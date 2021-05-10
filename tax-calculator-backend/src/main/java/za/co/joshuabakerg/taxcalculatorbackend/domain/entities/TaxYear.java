@@ -1,9 +1,13 @@
 package za.co.joshuabakerg.taxcalculatorbackend.domain.entities;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 import java.util.List;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
@@ -11,21 +15,26 @@ import lombok.RequiredArgsConstructor;
  * @author Joshua Baker on 2021/05/10
  */
 @Data
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 public class TaxYear {
 
     @NonNull
-    private final Integer id;
+    private Integer id;
 
     @NonNull
-    private final String name;
+    private String name;
 
     @NonNull
-    private final LocalDate strart;
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate strart;
 
     @NonNull
-    private final LocalDate end;
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate end;
 
     private List<TaxBracket> brackets;
+
+    private List<TaxRebate> taxRebates;
 
 }
