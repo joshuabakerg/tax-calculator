@@ -1,0 +1,139 @@
+
+app:
+  taxYears:
+    #######################################
+    - id: 0
+      name: Tax Year 2021
+      start: 01-03-2020
+      end: 28-02-2021
+      brackets:
+        - from: 0
+          to: 204_900
+          initialTax: 0
+          percentage: 18
+
+        - from: 205_901
+          to: 321_600
+          initialTax: 37_062
+          percentage: 26
+
+        - from: 321_601
+          to: 445_100
+          initialTax: 67_144
+          percentage: 31
+
+        - from: 445_101
+          to: 584_200
+          initialTax: 105_429
+          percentage: 36
+
+        - from: 584_201
+          to: 744_800
+          initialTax: 155_505
+          percentage: 39
+
+        - from: 744_801
+          to: 1_577_300
+          initialTax: 218_139
+          percentage: 41
+
+        - from: 1_577_301
+          initialTax: 559_464
+          percentage: 45
+
+      taxRebates:
+        - id: 0
+          name: Primary
+          ageRequired: 0
+          amount: 14_958
+        - id: 1
+          name: Secondary (Persons 65 and older)
+          ageRequired: 65
+          amount: 8_199
+        - id: 2
+          name: Tertiary (Persons 75 and older)
+          ageRequired: 75
+          amount: 2_736
+      taxThresholds:
+        - id: 0
+          name: Below age 65
+          maxAge: 64
+          threshold: 83_100
+        - id: 1
+          name: Age 65 to 75
+          minAge: 65
+          maxAge: 74
+          threshold: 128_650
+        - id: 2
+          name: Age 75 and over
+          minAge: 75
+          threshold: 143_850
+
+    #######################################
+    - id: 1
+      name: Tax Year 2020
+      start: 01-03-2019
+      end: 29-02-2020
+      brackets:
+        - from: 0
+          to: 204_900
+          initialTax: 0
+          percentage: 18
+
+        - from: 205_901
+          to: 321_600
+          initialTax: 37_062
+          percentage: 26
+
+        - from: 321_601
+          to: 445_100
+          initialTax: 67_144
+          percentage: 31
+
+        - from: 445_101
+          to: 584_200
+          initialTax: 105_429
+          percentage: 36
+
+        - from: 584_201
+          to: 744_800
+          initialTax: 155_505
+          percentage: 39
+
+        - from: 744_801
+          to: 1_577_300
+          initialTax: 218_139
+          percentage: 41
+
+        - from: 1_577_301
+          initialTax: 559_464
+          percentage: 45
+
+      taxRebates:
+        - id: 0
+          name: Primary
+          ageRequired: 0
+          amount: 14_220
+        - id: 1
+          name: Secondary (Persons 65 and older)
+          ageRequired: 65
+          amount: 7_794
+        - id: 2
+          name: Tertiary (Persons 75 and older)
+          ageRequired: 75
+          amount: 2_601
+
+      taxThresholds:
+        - id: 0
+          name: Below age 65
+          maxAge: 64
+          threshold: 79_000
+        - id: 1
+          name: Age 65 to 75
+          minAge: 65
+          maxAge: 74
+          threshold: 122_300
+        - id: 2
+          name: Age 75 and over
+          minAge: 75
+          threshold: 136_750
