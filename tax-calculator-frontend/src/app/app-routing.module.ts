@@ -1,7 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import {TaxCalculatorComponent} from "./tax-calculator/tax-calculator.component";
 
-const routes: Routes = [];
+const routes: Routes = [
+    { path: '', redirectTo: '/calculator', pathMatch: 'full' },
+    {
+        path: 'calculator',
+        component: TaxCalculatorComponent
+    },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,0 +1,83 @@
+<div class="container-fluid p-2">
+    <div class="form-group row form-inline">
+        <div class="form-group col-2">
+            <label for="inputIncome" class="sr-only">Income</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">R</div>
+                </div>
+                <input type="text" class="form-control" id="inputIncome" placeholder="Income">
+            </div>
+        </div>
+        <div class="form-group col-">
+            <select class="form-control" id="incomeFrequency">
+                <option>Monthly</option>
+                <option>Yearly</option>
+            </select>
+        </div>
+        <div class="form-group m-md-1 col-">
+            <select class="form-control" id="yearInput">
+                <option>2021</option>
+                <option>2020</option>
+            </select>
+        </div>
+        <div class="form-group col-1">
+            <label for="inputAge" class="sr-only">Age</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="inputAge" placeholder="Age">
+            </div>
+        </div>
+        <div class="form-group col-3">
+            <label for="inputMembers" class="sr-only">Age</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="inputMembers" placeholder="Medaid members">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success col-2 float-right">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cash" viewBox="0 0 16 16">
+                <path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
+                <path d="M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2H3z"/>
+            </svg>
+            Calculate
+        </button>
+    </div>
+
+    <table class="table table-active">
+        <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Month</th>
+            <th scope="col">Year</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row"><i class="bi bi-circle-fill" style="color: black"></i>
+                Gross Pay</th>
+            <td>30,000.00</td>
+            <td>360,000.00</td>
+        </tr>
+        <tr>
+            <th scope="row"><i class="bi bi-circle-fill" style="color: #f39c12"></i>
+                PAYE
+            </th>
+            <td>5,141.67</td>
+            <td>61,700.04</td>
+        </tr>
+        <tr>
+            <th scope="row"><i class="bi bi-circle-fill" style="color: #a30000"></i>
+                Credits
+            </th>
+            <td>319.00</td>
+            <td>3,828.00</td>
+        </tr>
+        <tr>
+            <th scope="row"><i class="bi bi-circle-fill" style="color: green"></i>
+                Take Home Pay
+            </th>
+            <td>24,709.00</td>
+            <td>296,508.00</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
