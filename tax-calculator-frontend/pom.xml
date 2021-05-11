@@ -85,8 +85,8 @@
                             <goal>npm</goal>
                         </goals>
                         <configuration>
-                            <arguments>run build</arguments>
-<!--                            <arguments>run build-prod</arguments>-->
+<!--                            <arguments>run build</arguments>-->
+                            <arguments>run build-prod</arguments>
                         </configuration>
                     </execution>
                 </executions>
