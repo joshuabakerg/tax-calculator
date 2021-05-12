@@ -36,4 +36,8 @@ public class TaxYear {
 
     private List<TaxRebate> taxRebates;
 
+    private List<TaxThreshold> taxThresholds;
+
+    private List<MedicalAidCredits> medAidCredits;
+
 }

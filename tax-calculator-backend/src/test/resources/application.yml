@@ -1,4 +1,3 @@
-
 app:
   taxYears:
     #######################################
@@ -54,60 +53,64 @@ app:
           name: Tertiary (Persons 75 and older)
           ageRequired: 75
           amount: 2_736
+
       taxThresholds:
-        - id: 0
-          name: Below age 65
+        - name: Below age 65
           maxAge: 64
           threshold: 83_100
-        - id: 1
-          name: Age 65 to 75
+        - name: Age 65 to 75
           minAge: 65
           maxAge: 74
           threshold: 128_650
-        - id: 2
-          name: Age 75 and over
+        - name: Age 75 and over
           minAge: 75
           threshold: 143_850
 
-    ##TODO update below
-    #######################################
+      medAidCredits:
+        - members: 1
+          credits: 319
+        - members: 1
+          credits: 319
+        - members: -1
+          credits: 215
+
     - id: 1
       name: Tax Year 2020
       start: 01-03-2019
       end: 29-02-2020
       brackets:
         - from: 0
-          to: 204_900
+          to: 198_850
           initialTax: 0
           percentage: 0.18
 
-        - from: 205_901
-          to: 321_600
-          initialTax: 37_062
+        - from: 198_851
+          to: 305_850
+          initialTax: 35_253
           percentage: 0.26
 
-        - from: 321_601
-          to: 445_100
-          initialTax: 67_144
+        - from: 305_851
+          to: 423_300
+          initialTax: 63_853
           percentage: 0.31
 
-        - from: 445_101
-          to: 584_200
-          initialTax: 105_429
+        - from: 423_301
+          to: 555_600
+          initialTax: 100_263
           percentage: 0.36
 
-        - from: 584_201
-          to: 744_800
-          initialTax: 155_505
+        - from: 555_601
+          to: 708_310
+          initialTax: 147_891
           percentage: 0.39
 
-        - from: 744_801
-          to: 1_577_300
-          initialTax: 218_139
+        - from: 708_311
+          to: 1_500_000
+          initialTax: 207_448
           percentage: 0.41
 
-        - from: 1_577_301
-          initialTax: 559_464
+        - from: 1_500_001
+          initialTax: 532_041
           percentage: 0.45
 
       taxRebates:
@@ -125,16 +128,21 @@ app:
           amount: 2_601
 
       taxThresholds:
-        - id: 0
-          name: Below age 65
+        - name: Below age 65
           maxAge: 64
           threshold: 79_000
-        - id: 1
-          name: Age 65 to 75
+        - name: Age 65 to 75
           minAge: 65
           maxAge: 74
           threshold: 122_300
-        - id: 2
-          name: Age 75 and over
+        - name: Age 75 and over
           minAge: 75
           threshold: 136_750
+
+      medAidCredits:
+        - members: 1
+          credits: 310
+        - members: 1
+          credits: 310
+        - members: -1
+          credits: 209
