@@ -15,11 +15,22 @@
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>11</java.version>
+        <problem-spring-web.version>0.26.2</problem-spring-web.version>
+
+        <openapi-generator.version>5.1.0</openapi-generator.version>
+        <jackson-databind.version>0.2.1</jackson-databind.version>
+        <springfox.version>2.9.2</springfox.version>
+        <mapstruct.version>1.3.1.Final</mapstruct.version>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
         <dependency>
@@ -32,6 +43,21 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.zalando</groupId>
+            <artifactId>problem-spring-web-starter</artifactId>
+            <version>${problem-spring-web.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${mapstruct.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>${mapstruct.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -49,6 +75,24 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <!-- openapi -->
+        <dependency>
+            <groupId>org.openapitools</groupId>
+            <artifactId>openapi-generator</artifactId>
+            <version>${openapi-generator.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openapitools</groupId>
+            <artifactId>jackson-databind-nullable</artifactId>
+            <version>${jackson-databind.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${springfox.version}</version>
+        </dependency>
+
         <!-- Frontend-->
         <dependency>
             <groupId>za.co.joshuabakerg</groupId>
@@ -64,6 +108,10 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-yaml</artifactId>
         </dependency>
     </dependencies>
 
@@ -81,6 +129,70 @@
                     </excludes>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>5.1.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>
+                                ${project.basedir}/src/main/resources/docs/v1/api.yaml
+                            </inputSpec>
+                            <generatorName>spring</generatorName>
+                            <apiPackage>za.co.joshuabakerg.taxcalculatorbackend.controller</apiPackage>
+                            <modelPackage>za.co.joshuabakerg.taxcalculatorbackend.controller.model</modelPackage>
+                            <supportingFilesToGenerate>
+                                ApiUtil.java
+                            </supportingFilesToGenerate>
+                            <configOptions>
+                                <delegatePattern>true</delegatePattern>
+                                <dateLibrary>java8</dateLibrary>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--<plugin>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>5.1.0</version>
+                <executions>
+                    <execution>
+                        <id>generate-openapi</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/main/resources/docs/v1/api.yaml</inputSpec>
+                            <generateApis>true</generateApis>
+                            <generateApiDocumentation>false</generateApiDocumentation>
+                            <generateSupportingFiles>false</generateSupportingFiles>
+                            <generateModels>true</generateModels>
+                            <generateModelDocumentation>false</generateModelDocumentation>
+                            <generateModelTests>false</generateModelTests>
+                            <generatorName>java</generatorName>
+                            <modelPackage>za.co.joshuabakerg.taxcalculatorbackend.controller.model</modelPackage>
+                            <configOptions>
+                                <sourceFolder>src/gen/java/main</sourceFolder>
+                                <useDocumentationAnnotations>false</useDocumentationAnnotations>
+                                <interfaceOnly>true</interfaceOnly>
+                                <withInterfaces>true</withInterfaces>
+                                <java8>true</java8>
+                                <dateLibrary>java8</dateLibrary>
+                                <useBeanValidation>true</useBeanValidation>
+                                <enableTokenRelay>false</enableTokenRelay>
+                                <apiPackage>za.co.joshuabakerg.taxcalculatorbackend.controller.model.controller</apiPackage>
+                                <modelPackage>za.co.joshuabakerg.taxcalculatorbackend.controller.model</modelPackage>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>-->
         </plugins>
     </build>
 

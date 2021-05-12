@@ -1,0 +1,214 @@
+openapi: 3.0.2
+info:
+  title: Tax Service
+  description: "Service providing operations to calculate income tax"
+  version: "1.0"
+  contact:
+    name: Joshua Baker
+    url: https://github.com/joshuabakerg/tax-calculator
+    email: joshuabakerg@gmail.com
+servers:
+  - url: http://localhost:8080/api/v1
+    description: Local environment
+tags:
+  - name: user
+    description: User resource operations
+paths:
+  /tax:
+    post:
+      tags:
+        - tax
+      summary: Calculates tax
+      operationId: calculateTax
+      requestBody:
+        $ref: '#/components/requestBodies/TaxCalculationRequest'
+      responses:
+        default:
+          description: error occurred - see status code and problem object for more information.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        200:
+          description: Successfully created the resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaxCalculationResponse'
+  /taxYears:
+    get:
+      tags:
+        - tax
+        - years
+      summary: Retrieves the applicable tax years
+      operationId: retrieveTaxYears
+      responses:
+        default:
+          description: error occurred - see status code and problem object for more information.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        200:
+          description: Successfully created the resource
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TaxYear'
+components:
+  parameters:
+    UserIdPathParameter:
+      in: path
+      name: id
+      description: The id of a resource
+      schema:
+        type: integer
+        format: int64
+      required: true
+  requestBodies:
+    TaxCalculationRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TaxCalculationRequest'
+  schemas:
+    TaxCalculationRequest:
+      type: object
+      required:
+        - income
+        - frequency
+        - taxYearId
+        - age
+      properties:
+        income:
+          type: number
+          format: double
+          description: The users income
+          minimum: 0
+        frequency:
+          $ref: "#/components/schemas/IncomeFrequency"
+        taxYearId:
+          type: integer
+          description: The tax year id
+          minimum: 0
+        age:
+          type: integer
+          description: The age of the user
+          minimum: 0
+        medicalAidMembers:
+          type: integer
+          description: How many medical aid members the user pays for
+    TaxCalculationResponse:
+      type: object
+      properties:
+        calculations:
+          type: array
+          items:
+            $ref: "#/components/schemas/TaxCalculation"
+    TaxCalculation:
+      type: object
+      required:
+        - "frequency"
+        - "grossPay"
+        - "PAYE"
+        - "taxCredits"
+        - "PAYEAfterCredits"
+        - "netPay"
+      properties:
+        frequency:
+          $ref: "#/components/schemas/IncomeFrequency"
+        grossPay:
+          type: number
+          format: double
+          description: The gross pay for the user
+          minimum: 0
+        PAYE:
+          type: number
+          format: double
+          description: The PAYE tax before credits
+          minimum: 0
+        taxCredits:
+          type: number
+          format: double
+          description: The users tax credits
+          minimum: 0
+        PAYEAfterCredits:
+          type: number
+          format: double
+          description: The PAYE tax after credits
+          minimum: 0
+        netPay:
+          type: number
+          format: double
+          description: The users take home pay
+          minimum: 0
+    IncomeFrequency:
+      type: string
+      enum: [ "MONTHLY","YEARLY" ]
+      description: The income frequency for the user
+    TaxYear:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The identifier for the tax year
+        name:
+          type: string
+          description: The name for the tax year
+        start:
+          type: string
+          format: date
+          description: The start of the tax year
+        end:
+          type: string
+          format: date
+          description: The end of the tax year
+    Problem:
+      type: object
+      description: |
+        Defines a "problem detail" as a way to carry machine-readable details of
+        errors in a HTTP response to avoid the need to define new error response
+        formats for HTTP APIs
+      externalDocs:
+        url: https://tools.ietf.org/html/rfc7807
+      properties:
+        type:
+          type: string
+          format: uri
+          description: |
+            An absolute URI that identifies the problem type.  When dereferenced,
+            it SHOULD provide human-readable documentation for the problem type
+            (e.g., using HTML).
+          default: 'about:blank'
+          example: 'https://zalando.github.io/problem/constraint-violation'
+        title:
+          type: string
+          description: |
+            A short, summary of the problem type. Written in english and readable
+            for engineers (usually not suited for non technical stakeholders and
+            not localized)
+          example: Service Unavailable
+        status:
+          type: integer
+          format: int32
+          description: |
+            The HTTP status code generated by the origin server for this occurrence
+            of the problem.
+          minimum: 100
+          maximum: 600
+          exclusiveMaximum: true
+          example: 503
+        detail:
+          type: string
+          description: |
+            A human readable explanation specific to this occurrence of the
+            problem.
+          example: Connection to database timed out
+        instance:
+          type: string
+          format: uri
+          description: |
+            An absolute URI that identifies the specific occurrence of the problem.
+            It may or may not yield further information if dereferenced.N
