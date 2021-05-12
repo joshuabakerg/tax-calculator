@@ -1,6 +1,8 @@
 package za.co.joshuabakerg.taxcalculatorbackend.domain.model;
 
 import java.math.BigDecimal;
+import java.util.Collection;
+import java.util.stream.Collectors;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,20 +19,7 @@ import lombok.NonNull;
 @Builder
 public class TaxCalculationResponse {
 
-    @NonNull
-    private BigDecimal monthlyPAYE;
-
-    @NonNull
-    private BigDecimal annuallyPAYE;
-
-    @NonNull
-    private BigDecimal taxCredits;
-
-    @NonNull
-    private BigDecimal taxAfterCredits;
-
-    @NonNull
-    private BigDecimal incomeAfterTax;
+    public Collection<TaxCalculation> taxCalculations;
 
 
 }

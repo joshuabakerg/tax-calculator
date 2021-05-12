@@ -1,4 +1,4 @@
-package za.co.joshuabakerg.taxcalculatorbackend.domain.core;
+package za.co.joshuabakerg.taxcalculatorbackend.core;
 
 import za.co.joshuabakerg.taxcalculatorbackend.domain.model.TaxCalculationRequest;
 import za.co.joshuabakerg.taxcalculatorbackend.domain.model.TaxCalculationResponse;

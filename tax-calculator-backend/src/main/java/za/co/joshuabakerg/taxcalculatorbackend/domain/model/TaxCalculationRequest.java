@@ -24,7 +24,7 @@ public class TaxCalculationRequest {
     private Integer age;
 
     @NonNull
-    private Frequency incomeFrequency;
+    private Frequency frequency;
 
     @NonNull
     private BigDecimal income;

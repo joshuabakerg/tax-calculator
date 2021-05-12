@@ -9,7 +9,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
 /**
  * @author Joshua Baker on 2021/05/10
@@ -27,7 +26,7 @@ public class TaxYear {
 
     @NonNull
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private LocalDate strart;
+    private LocalDate start;
 
     @NonNull
     @DateTimeFormat(pattern = "dd-MM-yyyy")

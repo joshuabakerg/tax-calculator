@@ -16,7 +16,6 @@ import lombok.RequiredArgsConstructor;
 @AllArgsConstructor
 public class TaxRebate {
 
-    @NonNull
     private int id;
 
     @NonNull

@@ -1,4 +1,4 @@
-package za.co.joshuabakerg.taxcalculatorbackend.domain.core.impl;
+package za.co.joshuabakerg.taxcalculatorbackend.core.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
@@ -16,8 +16,9 @@ import java.util.Collection;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import za.co.joshuabakerg.taxcalculatorbackend.domain.core.TaxCalculationService;
+import za.co.joshuabakerg.taxcalculatorbackend.core.TaxCalculationService;
 import za.co.joshuabakerg.taxcalculatorbackend.domain.model.Frequency;
+import za.co.joshuabakerg.taxcalculatorbackend.domain.model.TaxCalculation;
 import za.co.joshuabakerg.taxcalculatorbackend.domain.model.TaxCalculationRequest;
 import za.co.joshuabakerg.taxcalculatorbackend.domain.model.TaxCalculationResponse;
 
@@ -102,7 +103,10 @@ class TaxCalculationServiceTest {
             System.out.println("REQ: " + OM.writeValueAsString(req));
             final TaxCalculationResponse response = taxCalculationService.calculate(req);
             System.out.println("RES: " + OM.writeValueAsString(response));
-            Assertions.assertEquals(response.getMonthlyPAYE().setScale(2, RoundingMode.HALF_UP).toString(), testHolder.getExpectedTax());
+            final TaxCalculation taxCalc = response.getTaxCalculations().stream()
+                    .filter(taxCalculation -> taxCalculation.getFrequency() == Frequency.MONTHLY)
+                    .findAny().orElseThrow();
+            Assertions.assertEquals(taxCalc.getPaye().setScale(2, RoundingMode.HALF_UP).toString(), testHolder.getExpectedTax());
         }
     }
 

@@ -26,7 +26,7 @@ paths:
         default:
           description: error occurred - see status code and problem object for more information.
           content:
-            application/problem+json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/Problem'
         200:
@@ -43,12 +43,6 @@ paths:
       summary: Retrieves the applicable tax years
       operationId: retrieveTaxYears
       responses:
-        default:
-          description: error occurred - see status code and problem object for more information.
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Problem'
         200:
           description: Successfully created the resource
           content:
@@ -57,6 +51,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/TaxYear'
+        default:
+          description: error occurred - see status code and problem object for more information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
 components:
   parameters:
     UserIdPathParameter:
@@ -100,6 +100,7 @@ components:
         medicalAidMembers:
           type: integer
           description: How many medical aid members the user pays for
+          minimum: 0
     TaxCalculationResponse:
       type: object
       properties:
@@ -112,9 +113,9 @@ components:
       required:
         - "frequency"
         - "grossPay"
-        - "PAYE"
+        - "paye"
         - "taxCredits"
-        - "PAYEAfterCredits"
+        - "payeAfterCredits"
         - "netPay"
       properties:
         frequency:
@@ -124,7 +125,7 @@ components:
           format: double
           description: The gross pay for the user
           minimum: 0
-        PAYE:
+        paye:
           type: number
           format: double
           description: The PAYE tax before credits
@@ -134,7 +135,7 @@ components:
           format: double
           description: The users tax credits
           minimum: 0
-        PAYEAfterCredits:
+        payeAfterCredits:
           type: number
           format: double
           description: The PAYE tax after credits

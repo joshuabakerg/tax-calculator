@@ -1,9 +1,7 @@
 package za.co.joshuabakerg.taxcalculatorbackend.domain.repositories.impl;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.Collection;
@@ -41,7 +39,7 @@ public class TaxYearRepositoryImpl implements TaxYearRepository {
             return Optional.empty();
         }
         return CollectionUtils.emptyIfNull(applicationProperties.getTaxYears()).stream()
-                .filter(taxYear -> date.isEqual(taxYear.getStrart()) || date.isAfter(taxYear.getStrart()))
+                .filter(taxYear -> date.isEqual(taxYear.getStart()) || date.isAfter(taxYear.getStart()))
                 .filter(taxYear -> date.isEqual(taxYear.getEnd()) || date.isBefore(taxYear.getEnd()))
                 .findFirst();
     }
