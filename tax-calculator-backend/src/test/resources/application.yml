@@ -7,7 +7,7 @@ app:
       end: 28-02-2021
       brackets:
         - from: 0
-          to: 204_900
+          to: 205_900
           initialTax: 0
           percentage: 0.18
 
