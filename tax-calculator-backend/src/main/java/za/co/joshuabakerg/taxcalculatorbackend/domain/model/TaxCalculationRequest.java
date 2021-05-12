@@ -29,7 +29,6 @@ public class TaxCalculationRequest {
     @NonNull
     private BigDecimal income;
 
-    @NonNull
-    private Integer medicalAidMembers;
+    private int medicalAidMembers;
 
 }

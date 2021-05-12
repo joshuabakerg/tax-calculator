@@ -1,45 +1,47 @@
 <div class="container-fluid p-2">
-    <div class="form-group row">
+    <div class="form-group row" [formGroup]="requestForm">
         <div class="form-group col-md-2">
             <label for="inputIncome" class="sr-only">Income</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <div class="input-group-text">R</div>
                 </div>
-                <input type="text" class="form-control" id="inputIncome" placeholder="Income">
+                <input type="number" class="form-control" id="inputIncome" placeholder="Income" formControlName="income" required>
             </div>
         </div>
         <div class="form-group col-md">
-            <select class="form-control" id="incomeFrequency">
-                <option>Monthly</option>
-                <option>Yearly</option>
+            <select class="form-control" id="incomeFrequency" formControlName="frequency">
+                <option value="MONTHLY">Monthly</option>
+                <option value="YEARLY">Yearly</option>
             </select>
         </div>
         <div class="form-group col-md">
-            <select class="form-control" id="yearInput">
-                <option>2021</option>
-                <option>2020</option>
+            <select class="form-control" id="yearInput" formControlName="taxYearId">
+                <option *ngFor="let taxYear of taxYears" [value]="taxYear.id">{{taxYear.name}}</option>
             </select>
         </div>
         <div class="form-group col-md-1">
             <label for="inputAge" class="sr-only">Age</label>
             <div class="input-group">
-                <input type="text" class="form-control" id="inputAge" placeholder="Age">
+                <input type="number" class="form-control" id="inputAge" placeholder="Age" formControlName="age">
             </div>
         </div>
         <div class="form-group col-md-3">
             <label for="inputMembers" class="sr-only">Age</label>
             <div class="input-group">
-                <input type="text" class="form-control" id="inputMembers" placeholder="Medaid members">
+                <input type="number" class="form-control" id="inputMembers" placeholder="Medaid members">
             </div>
         </div>
-        <button type="submit" class="btn btn-success col-md-2">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cash" viewBox="0 0 16 16">
-                <path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
-                <path d="M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2H3z"/>
-            </svg>
+        <button type="submit" class="btn btn-success col-md-2" (click)="onSubmitClicked()">
+            <i class="bi bi-cash"></i>
             Calculate
         </button>
+    </div>
+    <div *ngIf="requestForm.invalid && showValidationError" class="alert alert-danger m-md-1" role="alert">
+        Required fields: Income and age
+    </div>
+    <div *ngFor="let errorMessage of errorMessages" class="alert alert-danger m-md-1" role="alert">
+        {{errorMessage}}
     </div>
 
     <table class="table table-active">
@@ -53,30 +55,38 @@
         <tbody>
         <tr>
             <th scope="row"><i class="bi bi-circle-fill" style="color: black"></i>
-                Gross Pay</th>
-            <td>30,000.00</td>
-            <td>360,000.00</td>
+                Gross Pay
+            </th>
+            <td>{{ (taxCalcMonthly?.grossPay | number:'1.2-2') || " - "}}</td>
+            <td>{{ (taxCalcYearly?.grossPay | number:'1.2-2') || " - "}}</td>
         </tr>
         <tr>
             <th scope="row"><i class="bi bi-circle-fill" style="color: #f39c12"></i>
                 PAYE
             </th>
-            <td>5,141.67</td>
-            <td>61,700.04</td>
+            <td>{{ (taxCalcMonthly?.paye | number:'1.2-2') || " - "}}</td>
+            <td>{{ (taxCalcYearly?.paye | number:'1.2-2') || " - "}}</td>
         </tr>
         <tr>
             <th scope="row"><i class="bi bi-circle-fill" style="color: #a30000"></i>
                 Credits
             </th>
-            <td>319.00</td>
-            <td>3,828.00</td>
+            <td>{{ (taxCalcMonthly?.taxCredits | number:'1.2-2') || " - "}}</td>
+            <td>{{ (taxCalcYearly?.taxCredits | number:'1.2-2') || " - "}}</td>
+        </tr>
+        <tr>
+            <th scope="row"><i class="bi bi-circle-fill" style="color: #a39300"></i>
+                PAYE After Credits
+            </th>
+            <td>{{ (taxCalcMonthly?.payeAfterCredits | number:'1.2-2') || " - "}}</td>
+            <td>{{ (taxCalcYearly?.payeAfterCredits | number:'1.2-2') || " - "}}</td>
         </tr>
         <tr>
             <th scope="row"><i class="bi bi-circle-fill" style="color: green"></i>
                 Take Home Pay
             </th>
-            <td>24,709.00</td>
-            <td>296,508.00</td>
+            <td><b>{{ (taxCalcMonthly?.netPay | number:'1.2-2') || " - "}}</b></td>
+            <td><b>{{ (taxCalcYearly?.netPay | number:'1.2-2') || " - "}}</b></td>
         </tr>
         </tbody>
     </table>

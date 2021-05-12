@@ -30,7 +30,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Problem'
         200:
-          description: Successfully created the resource
+          description: Successfully calculated the income tax
           content:
             application/json:
               schema:
@@ -44,7 +44,7 @@ paths:
       operationId: retrieveTaxYears
       responses:
         200:
-          description: Successfully created the resource
+          description: Successfully retrieved the tax years
           content:
             application/json:
               schema:
@@ -101,6 +101,7 @@ components:
           type: integer
           description: How many medical aid members the user pays for
           minimum: 0
+          default: 0
     TaxCalculationResponse:
       type: object
       properties:
