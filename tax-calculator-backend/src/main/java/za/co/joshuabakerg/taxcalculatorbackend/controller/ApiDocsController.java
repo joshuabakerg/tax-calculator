@@ -44,7 +44,7 @@ public class ApiDocsController {
     @GetMapping(value = {"/{version}/api-docs"}, produces = {"application/json", "application/json+hal"})
     @ResponseBody
     public LinkedHashMap<?, ?> getDocumentation(@PathVariable final String version) throws IOException {
-        final ClassPathResource resource = new ClassPathResource(String.format("docs/%s/api.yml", version));
+        final ClassPathResource resource = new ClassPathResource(String.format("docs/%s/api.yaml", version));
         if (!resource.exists()) {
             throw new ApiDocNotFoundException(version);
         }
